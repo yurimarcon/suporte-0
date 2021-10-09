@@ -14,27 +14,20 @@
       fixed
       temporary
     >
-      <v-system-bar></v-system-bar>
-      <v-list>
-        <v-list-item>
-          <v-list-item-avatar>
-            <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
-          </v-list-item-avatar>
-        </v-list-item>
-
-        <v-list-item link>
-          <v-list-item-content>
-            <v-list-item-title class="text-h6">
-              John Leider
-            </v-list-item-title>
-            <v-list-item-subtitle>john@vuetifyjs.com</v-list-item-subtitle>
-          </v-list-item-content>
-
-          <v-list-item-action>
-            <v-icon>mdi-menu-down</v-icon>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list>
+              
+      <div
+      class="text-center text--secondary py-5"
+      >
+        <v-avatar
+        size="150"
+        >
+          <v-img :src="profile.photo"></v-img>
+        </v-avatar>
+        
+        <p class="mt-3 font-weight-bold">{{profile.name}}</p>
+        <p>{{profile.email}}</p>
+      </div>
+      
       <v-divider></v-divider>
       <v-list
         nav
@@ -74,25 +67,28 @@ export default {
   data: () => ({
     drawer: null,
     selectedItem: 0,
-      items: [
-        { text: 'My Files', icon: 'mdi-folder' },
-        { text: 'Shared with me', icon: 'mdi-account-multiple' },
-        { text: 'Starred', icon: 'mdi-star' },
-        { text: 'Recent', icon: 'mdi-history' },
-        { text: 'Offline', icon: 'mdi-check-circle' },
-        { text: 'Uploads', icon: 'mdi-upload' },
-        { text: 'Backups', icon: 'mdi-cloud-upload' },
-        { text: 'Sair', icon: 'mdi-logout'},
-      ],
-  })
+    items: [
+      { text: 'Sair', icon: 'mdi-logout'}
+    ],
+    profile:{
+      photo : "https://cdn-icons-png.flaticon.com/512/3237/3237472.png",
+      name  : null,
+      email : null
+    }
+  }),
+  mounted(){
+    console.log(this.$store.state.auth.user)
+    if(this.$store.state.auth.user){
+      this.profile.email = this.$store.state.auth.user.email,
+      this.profile.name = this.$store.state.auth.user.displayName;
+      this.profile.photo = this.$store.state.auth.user.photoURL;
+    }
+  }
 };
 </script>
 
 <style>
-html{
-  background: url("https://cdn.pixabay.com/photo/2017/01/24/03/53/plant-2004483_960_720.jpg") !important;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100%;
+*{
+  font-family: 'Nunito', sans-serif;
 }
 </style>

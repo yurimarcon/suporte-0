@@ -20,6 +20,16 @@
           <template v-slot:item.id="{ item }">
             {{ item.id | date(item.id) }}
           </template>
+          
+          <template v-slot:item.view="{ item }">
+            <v-btn
+            :to="{name:'DetalhesTicket', params:item}"
+            color="primary"
+            rounded
+            >
+              <v-icon>mdi-arrow-right-bold-circle-outline</v-icon>
+            </v-btn>
+          </template>
 
         </v-data-table>
       </v-card>
@@ -45,6 +55,7 @@ export default {
           },
           { text: 'Prioridade', value: 'priority'},
           { text: 'Data da Criação', value: 'id'},
+          { text: 'Visualizar', value: 'view'},
         ],
         desserts: []
     }

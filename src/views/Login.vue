@@ -46,8 +46,18 @@
                     Entrar
                 </v-btn>
                 
+                <v-btn
+                class="my-4"
+                block
+                color="error darken-1"
+                @click="$store.dispatch('login')"
+                >
+                    <v-icon>mdi-google</v-icon>
+                    
+                </v-btn>
             </v-form>
             
+
         </v-card>
     </div>
 </template>

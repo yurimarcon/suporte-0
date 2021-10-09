@@ -27,11 +27,13 @@ const actions = {
                 console.log(error)
             });
     },
-    verifyAuth(){
+    verifyAuth({commit}){
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if (!user) {
               routes.push('/')
+            }else{
+                commit('setUser', user);
             }
         });
     },

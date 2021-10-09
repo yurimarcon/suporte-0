@@ -87,3 +87,12 @@ export default {
   })
 };
 </script>
+
+<style>
+html{
+  background: url("https://cdn.pixabay.com/photo/2017/01/24/03/53/plant-2004483_960_720.jpg") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+}
+</style>

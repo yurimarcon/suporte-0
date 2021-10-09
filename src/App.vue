@@ -76,8 +76,8 @@ export default {
       email : null
     }
   }),
-  mounted(){
-    console.log(this.$store.state.auth.user)
+  updated(){
+    // console.log(this.$store.state.auth.user)
     if(this.$store.state.auth.user){
       this.profile.email = this.$store.state.auth.user.email,
       this.profile.name = this.$store.state.auth.user.displayName;

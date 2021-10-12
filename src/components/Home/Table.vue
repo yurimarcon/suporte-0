@@ -18,7 +18,7 @@
         >
           
           <template v-slot:item.id="{ item }">
-            {{ item.id | date(item.id) }}
+            {{ item.creationDate | date(item.creationDate) }}
           </template>
           
           <template v-slot:item.view="{ item }">
@@ -64,18 +64,8 @@ export default {
     buscaRegistros(){
       onValue(ref(db, 'Tickets/'), snapshot => {
         this.desserts = Object.values(snapshot.val())
+        console.log(this.desserts)
         this.loading = false
-      });
-    },
-    gravaDocumento(){
-      let id = new Date().getTime();
-      set(ref(db, 'Tickets/' + id), {
-      // set(ref(db, 'Usuarios/' + 1633609746505), {
-        title: "Alteração X",
-        description: "Preciso alterar um dado mas não estou conseguindo.",
-        priority: "Alta",
-        lastUpdate: new Date().getTime(),
-        id: id
       });
     },
     removerDocumento(){

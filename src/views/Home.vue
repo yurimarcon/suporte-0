@@ -27,17 +27,17 @@
       </v-col>
 
     </v-row>
-    <ButtonPlus />
+    <CreateView />
   </div>
 </template>
 
 <script>
 import Table from "../components/Home/Table.vue";
 import HeaderSaldo from "../components/Home/HeaderSaldo.vue";
-import ButtonPlus from "../components/Home/ButtonPlus.vue";
+import CreateView from "../components/Home/DialogCreate/CreateView.vue";
 
 export default {
-  components:{Table, HeaderSaldo, ButtonPlus},
+  components:{Table, HeaderSaldo, CreateView},
   created(){
     this.$store.dispatch('verifyAuth');
   },

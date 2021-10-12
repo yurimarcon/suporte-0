@@ -1,5 +1,6 @@
 <template>
     <v-card class="text--secondary pa-5">
+      <ButtonBack />
       <h1>Detalhes:</h1>
 
       <v-divider class="mb-3"></v-divider>
@@ -48,7 +49,9 @@
 </template>
 
 <script>
+import ButtonBack from "../Shared/ButtonBack.vue";
 export default {
+  components:{ButtonBack},
     filters:{
         data(milisegundos){
             return new Date(milisegundos).toLocaleString();

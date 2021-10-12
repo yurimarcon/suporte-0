@@ -20,6 +20,8 @@
                 <v-text-field
                 outlined
                 label="Login"
+                name="email"
+                type="email"
                 prepend-inner-icon="mdi-account-circle-outline"
                 v-model="credentials.login"
                 :rules="[rules.required, rules.email]"
@@ -27,6 +29,7 @@
                 ></v-text-field>
                 
                 <v-text-field
+                name="password"
                 outlined
                 v-model="credentials.password"
                 prepend-inner-icon="mdi-lock-outline"

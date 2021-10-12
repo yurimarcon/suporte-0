@@ -40,7 +40,7 @@
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
-            @click="$store.dispatch('logOut')"
+            :to="item.to"
           >
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
@@ -50,6 +50,22 @@
               <v-list-item-title v-text="item.text"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          
+
+          <!-- Sair -->
+          <v-list-item
+          @click="$store.dispatch('logOut')"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-logout</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Sair</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <!-- Sair -->
+
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -68,7 +84,8 @@ export default {
     drawer: null,
     selectedItem: 0,
     items: [
-      { text: 'Sair', icon: 'mdi-logout'}
+      { text: 'Início', icon: 'mdi-home', to:'/home'},
+      { text: 'Avançados', icon: 'mdi-database-cog', to:'/avancado'},
     ],
     profile:{
       photo : "https://cdn-icons-png.flaticon.com/512/3237/3237472.png",
@@ -79,9 +96,9 @@ export default {
   updated(){
     // console.log(this.$store.state.auth.user)
     if(this.$store.state.auth.user){
+      if(this.$store.state.auth.user.photoURL)this.profile.photo = this.$store.state.auth.user.photoURL;
       this.profile.email = this.$store.state.auth.user.email,
       this.profile.name = this.$store.state.auth.user.displayName;
-      this.profile.photo = this.$store.state.auth.user.photoURL;
     }
   }
 };

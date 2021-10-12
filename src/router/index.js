@@ -16,6 +16,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/avancado',
+    name: 'avancado',
+    component: () => import('../views/Avancado.vue')
+  },
+  {
     path: '/detalhesticket',
     name: 'DetalhesTicket',
     component: () => import('../views/DetalhesTicker.vue')

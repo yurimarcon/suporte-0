@@ -4,17 +4,6 @@ import routes from '../../router'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 
 const actions = {
-    sigIn(){
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, 'yuri.oliveira@brasoftware.com.br', '123456')
-            .then((userCredential) => {
-                console.log(userCredential);
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        
-    },
     loginWithEmailAndPasw({commit}, credentials){
         console.log(credentials)
         const auth = getAuth();

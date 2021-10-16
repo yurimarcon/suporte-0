@@ -11,7 +11,8 @@
         <Table />
       </v-col>
       <v-col
-      cols="3"
+      cols="12"
+      sm="3"
       >
         <v-card
         class="pa-3 text--secondary"

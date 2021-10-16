@@ -1,14 +1,27 @@
 <template>
-    <div>
-        <v-row
-        class="ma-sm-3"
+    <div class="ma-sm-3">
+        <v-alert
+        color="primary"
+        dark
+        icon="mdi-face-agent"
+        border="left"
         >
+        Nessa tela você pode gerenciar os usuários do sistema, em caso de dúvidas, entre em contato com o desenvolvedor da plataforma.
+        </v-alert>
+        <v-row>
             <v-col
             cols="12"
-            sm="6"
             md="4"
             >
+                <TotalDeUsuarios />
                 <CriarUsuario />
+            </v-col>
+            
+            <v-col
+            cols="12"
+            md="8"
+            >
+                <TabelaUsuarios />
             </v-col>
         </v-row>
 
@@ -17,8 +30,10 @@
 
 <script>
 import CriarUsuario from "../components/Avancado/CriarUsuario.vue";
+import TabelaUsuarios from "../components/Avancado/TabelaUsuarios.vue";
+import TotalDeUsuarios from "../components/Avancado/TotalDeUsuarios.vue";
 export default {
-    components:{CriarUsuario}
+    components:{CriarUsuario, TabelaUsuarios, TotalDeUsuarios}
 
 }
 </script>

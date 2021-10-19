@@ -5,11 +5,11 @@
             <v-divider></v-divider>
             <v-timeline>
                 <v-timeline-item
-                v-for="n in 3"
-                :key="n"
+                v-for="message in messages"
+                :key="message.id_chat"
                 large
-                :right="n%2==0"
-                :left="n%2!=0"
+                :right="message.from !== 'user'"
+                :left="message.from == 'user'"
                 >
                     <template v-slot:icon>
                         <v-avatar
@@ -19,13 +19,34 @@
 
                     <v-card class="elevation-2 text--secondary">
                         
-                        <h2 class="ml-4">
+                        <!-- <h2 class="ml-4">
                             Lorem ipsum
-                        </h2>
+                        </h2> -->
 
                         <v-card-text>
-                            Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.
+                            {{ message.description }}
+                            
+                            
                         </v-card-text>
+                        <v-card-actions>
+                            <v-icon
+                            v-if="!love"
+                            @mouseenter="color = 'red'"
+                            @mouseleave="color = null"
+                            :color="color"
+                            @click="love = !love"
+                            >mdi-cards-heart-outline</v-icon>
+                            <v-icon
+                            v-else
+                            @mouseenter="color = 'red'"
+                            @mouseleave="color = null"
+                            @click="love = !love"
+                            color="red"
+                            >mdi-cards-heart</v-icon>
+
+                            <v-spacer></v-spacer>
+                            <small>{{message.date}}</small>
+                        </v-card-actions>
 
                     </v-card>
 
@@ -36,8 +57,24 @@
 </template>
 
 <script>
-export default {
+import { getDatabase, onValue, ref } from '@firebase/database'
+import '../../services/firebase'
+const db = getDatabase();
 
+export default {
+    data:()=>{
+        return{
+            color: null,
+            love : false,
+            messages:[]
+        }
+    },
+    mounted(){
+        onValue(ref(db, 'Chats/'), snapshot => {
+            this.messages = Object.values(snapshot.val()).reverse()
+            console.log(Object.values(snapshot.val()))
+        });
+    }
 }
 </script>
 

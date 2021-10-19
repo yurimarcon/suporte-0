@@ -4,7 +4,12 @@
             <h1>Timeline de atendimento:</h1>
             <v-divider></v-divider>
             <v-timeline>
-                <v-timeline-item
+                <ItemTimeline
+                v-for="message in messages"
+                :key="message.id_chat"
+                :message="message"
+                />
+                <!-- <v-timeline-item
                 v-for="message in messages"
                 :key="message.id_chat"
                 large
@@ -18,10 +23,6 @@
                     </template>
 
                     <v-card class="elevation-2 text--secondary">
-                        
-                        <!-- <h2 class="ml-4">
-                            Lorem ipsum
-                        </h2> -->
 
                         <v-card-text>
                             {{ message.description }}
@@ -50,7 +51,7 @@
 
                     </v-card>
 
-                </v-timeline-item>
+                </v-timeline-item> -->
             </v-timeline>
         </v-card>
     </div>
@@ -59,9 +60,11 @@
 <script>
 import { getDatabase, onValue, ref } from '@firebase/database'
 import '../../services/firebase'
+import ItemTimeline from './ItemTimeline.vue';
 const db = getDatabase();
 
 export default {
+    components:{ItemTimeline},
     data:()=>{
         return{
             color: null,

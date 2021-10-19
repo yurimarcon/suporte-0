@@ -1,5 +1,6 @@
 <template>
   <div class="ma-sm-5">
+    
     <v-alert
     color="primary"
     dark
@@ -8,6 +9,7 @@
     >
     Esse ticket apenas pode ser ser respondido caso o workflow do processo esteja com você.
     </v-alert>
+
     <Detalhes />
   </div>
 </template>

@@ -14,7 +14,7 @@
       cols="12"
       sm="3"
       >
-        <v-card
+        <!-- <v-card
         class="pa-3 text--secondary"
         color="warning lighten-3"
         height="600"
@@ -24,7 +24,8 @@
           <v-textarea
           rows="18"
           ></v-textarea>
-        </v-card>
+        </v-card> -->
+        <Anotacoes />
       </v-col>
 
     </v-row>
@@ -36,9 +37,10 @@
 import Table from "../components/Home/Table.vue";
 import HeaderSaldo from "../components/Home/HeaderSaldo.vue";
 import CreateView from "../components/Home/DialogCreate/CreateView.vue";
+import Anotacoes from "../components/Home/Anotacoes.vue";
 
 export default {
-  components:{Table, HeaderSaldo, CreateView},
+  components:{Table, HeaderSaldo, CreateView, Anotacoes},
   created(){
     this.$store.dispatch('verifyAuth');
   },

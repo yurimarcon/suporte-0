@@ -17,7 +17,7 @@
         :search="search"
         >
           
-          <template v-slot:item.id="{ item }">
+          <template v-slot:item.creationDate="{ item }">
             {{ item.creationDate | date(item.creationDate) }}
           </template>
           

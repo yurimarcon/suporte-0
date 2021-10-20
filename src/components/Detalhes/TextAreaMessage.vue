@@ -1,29 +1,20 @@
 <template>
     <div>
-        <v-card class="my-3 pa-5">
+        <v-card class="mb-3 pt-4 px-4">
             <v-form
             :disabled="disabled"
             @submit.prevent="handleEnviar()"
             >
-                <v-textarea
-                outlined
+                <v-text-field
                 v-model="description"
-                name="Mensagem"
-                label="Mensagem"
-                ></v-textarea>
-
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                    :disabled="disabled"
-                    color="primary"
-                    type="submit"
-                    >
-                        enviar 
-                        <v-icon>mdi-arrow-right</v-icon>
-                    </v-btn>
-                    <v-spacer></v-spacer>
-                </v-card-actions>
+                append-outer-icon="mdi-send"
+                :prepend-icon="icon"
+                outlined
+                clearable
+                label="Message"
+                type="text"
+                @click:append-outer="handleEnviar()"
+                ></v-text-field>
             </v-form>
         </v-card>
     </div>

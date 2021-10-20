@@ -9,13 +9,13 @@
     height="130"
     >
     <h1>Total de Usuários: </h1>
-    <strong>4</strong>
+    <strong>{{count}}</strong>
     </v-alert>
 </template>
 
 <script>
 export default {
-
+    props:['count']
 }
 </script>
 

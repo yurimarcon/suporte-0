@@ -27,19 +27,8 @@
         label="Senha"
         type="password"
         counter
-        :rules="[rules.required, rules.min]"
+        :rules="[rules.min]"
         v-model="user.password"
-        :error="passwordError"
-        ></v-text-field>
-        
-        <v-text-field
-        dense
-        label="Confirme a senha"
-        type="password"
-        counter
-        :rules="[rules.required, rules.min]"
-        v-model="user.password2"
-        :error="passwordError"
         ></v-text-field>
         
         <v-text-field
@@ -48,6 +37,13 @@
         type="text"
         v-model="user.office"
         ></v-text-field>
+
+        <v-select
+        dense
+        :items="['default', 'admin']"
+        label="Grupo"
+        v-model="user.group"
+        ></v-select>
         
         <v-row
         class="d-flex justify-space-around mt-2"
@@ -61,7 +57,7 @@
             :disabled="formIncomplete"
             color="primary"
             type="submit"
-            >Criar</v-btn>
+            >Gravar</v-btn>
         </v-row>
 
     </v-form>
@@ -79,50 +75,28 @@ export default {
                 email: null,
                 office: null,
                 password: null,
-                password2: null,
+                group:'dafault'
             },
             rules: {
-                required: value => !!value || 'Obrigatório.',
                 min: v => v && v.length >= 6 || 'No mínimo 6 caracteres'
             },
         }
     },
     methods:{
         handleEnviar(){
-            if(this.user.password != this.user.password2){
-                return;
-            }
-            if(!this.user.name || !this.user.email || !this.user.office || !this.user.password || !this.user.password2){
-                return;
-            }
             this.$store.dispatch('createUser', this.user);
             this.user = {
                 name: null,
                 email: null,
                 office: null,
                 password: null,
-                password2: null
+                group: 'default'
             }
         },
-        handleLimpar(){
-            console.log('limpou')
-        }
     },
     computed:{
-        passwordError: function(){
-            console.log(this.user.password, this.user.password2)
-            if(this.user.password != null && this.user.password != ''){
-                if(this.user.password != this.user.password2){
-                    return true;
-                }else{
-                    return false;
-                }       
-            }else{
-                return false;
-            }
-        },
         formIncomplete(){
-            if(!this.user.name || !this.user.email || !this.user.office || !this.user.password || !this.user.password2){
+            if(!this.user.name || !this.user.email || !this.user.office || !this.user.password){
                 return true;
             }
         }

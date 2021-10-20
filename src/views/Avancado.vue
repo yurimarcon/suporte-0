@@ -13,7 +13,9 @@
             cols="12"
             md="4"
             >
-                <TotalDeUsuarios />
+                <TotalDeUsuarios 
+                :count="count"
+                />
                 <CriarUsuario />
             </v-col>
             
@@ -21,7 +23,9 @@
             cols="12"
             md="8"
             >
-                <TabelaUsuarios />
+                <TabelaUsuarios 
+                @countUsers="countUsers"
+                />
             </v-col>
         </v-row>
 
@@ -33,8 +37,17 @@ import CriarUsuario from "../components/Avancado/CriarUsuario.vue";
 import TabelaUsuarios from "../components/Avancado/TabelaUsuarios.vue";
 import TotalDeUsuarios from "../components/Avancado/TotalDeUsuarios.vue";
 export default {
-    components:{CriarUsuario, TabelaUsuarios, TotalDeUsuarios}
-
+    components:{CriarUsuario, TabelaUsuarios, TotalDeUsuarios},
+    data(){
+        return{
+            count : 0
+        }
+    },
+    methods:{
+        countUsers(count){
+            this.count = count ;
+        }
+    }
 }
 </script>
 

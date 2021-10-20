@@ -57,11 +57,10 @@ export default {
             color: null,
             love : false
         }
-    },methods:{
+    },
+    methods:{
         like(){
-            
             this.message.like = !this.message.like;
-
             const colection = ref(db, 'Chats/' + this.message.id_chat );
             set(colection, this.message);
         }

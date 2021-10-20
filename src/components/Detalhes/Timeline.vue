@@ -3,56 +3,22 @@
         <v-card  class="pa-5 text--secondary">
             <h1>Timeline de atendimento:</h1>
             <v-divider></v-divider>
-            <v-timeline>
-                <ItemTimeline
-                v-for="message in messages"
-                :key="message.id_chat"
-                :message="message"
-                />
-                <!-- <v-timeline-item
-                v-for="message in messages"
-                :key="message.id_chat"
-                large
-                :right="message.from !== 'user'"
-                :left="message.from == 'user'"
-                >
-                    <template v-slot:icon>
-                        <v-avatar
-                        color="purple darken-4"
-                        ></v-avatar>
-                    </template>
-
-                    <v-card class="elevation-2 text--secondary">
-
-                        <v-card-text>
-                            {{ message.description }}
-                            
-                            
-                        </v-card-text>
-                        <v-card-actions>
-                            <v-icon
-                            v-if="!love"
-                            @mouseenter="color = 'red'"
-                            @mouseleave="color = null"
-                            :color="color"
-                            @click="love = !love"
-                            >mdi-cards-heart-outline</v-icon>
-                            <v-icon
-                            v-else
-                            @mouseenter="color = 'red'"
-                            @mouseleave="color = null"
-                            @click="love = !love"
-                            color="red"
-                            >mdi-cards-heart</v-icon>
-
-                            <v-spacer></v-spacer>
-                            <small>{{message.date}}</small>
-                        </v-card-actions>
-
-                    </v-card>
-
-                </v-timeline-item> -->
-            </v-timeline>
+            <v-virtual-scroll
+            :items="[0]"
+            bench="350"
+            height="350"
+            item-height="350"
+            >
+                <template v-slot:default="{ item }">
+                    <v-timeline>
+                        <ItemTimeline
+                        v-for="message in messages"
+                        :key="message.id_chat"
+                        :message="message"
+                        />
+                    </v-timeline>
+                </template>
+            </v-virtual-scroll>
         </v-card>
     </div>
 </template>

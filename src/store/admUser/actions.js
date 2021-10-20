@@ -8,9 +8,9 @@ const actions = {
     sigIn({commit}, user){
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, user.email, user.password)
-            .then((userCredential) => {
-                console.log(userCredential);
-            })
+            // .then((userCredential) => {
+            //     console.log(userCredential);
+            // })
             .catch((error) => {
                 console.log(error)
             });
@@ -27,6 +27,10 @@ const actions = {
         const colection = ref(db, 'Usuarios/' + user.id );
         this.dispatch('sigIn', user)
 
+        set(colection, user);
+    },
+    updateUser({commit}, user){
+        const colection = ref(db, 'Usuarios/' + user.id );
         set(colection, user);
     }
 }
